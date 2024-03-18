@@ -8,4 +8,3 @@ pipelines:
           - apt update -y
           - apt install cmake -y
           - make test
-          - make coverage
