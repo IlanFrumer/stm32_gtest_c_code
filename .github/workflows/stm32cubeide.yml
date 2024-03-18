@@ -1,0 +1,22 @@
+name: stm32cubeide
+
+on:
+  - push
+  - workflow_dispatch
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    container:
+      image: cooperlitecheck/stm32cubeide:1.14.0
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: Import STM32CubeIDE project
+        run: |
+          /opt/st/stm32cubeide_1.14.0/headless-build.sh -data . -import source/stm32-cube-ide/
+
+      - name: Build STM32CubeIDE project
+        run: |
+          /opt/st/stm32cubeide_1.14.0/headless-build.sh -data . -cleanBuild tutorial-gtest-stm32
