@@ -1,6 +1,8 @@
 name: Test
 
-on: [push]
+on:
+  - push
+  - workflow_dispatch
 
 jobs:
   unit-tests:
@@ -9,20 +11,19 @@ jobs:
       image: charlesdias/stm32_gtest:latest
 
     steps:
-    - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
 
-    - name: Configure, build, and run Google Test
-      run: |
-        make test
+      - name: Configure, build, and run Google Test
+        run: |
+          make test
 
-    - name: Run coverage
-      run: |
-        make coverage
+      - name: Run coverage
+        run: |
+          make coverage
 
-    - name: Upload coverage reports to Codecov with GitHub Action
-      uses: codecov/codecov-action@v3
-      with:
-        gcov_ignore: 
-          ./build
-          ./docs
-          ./tests
+      - name: Upload coverage reports to Codecov with GitHub Action
+        uses: codecov/codecov-action@v3
+        with:
+          gcov_ignore: ./build
+            ./docs
+            ./tests
