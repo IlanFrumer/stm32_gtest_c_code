@@ -3,15 +3,9 @@ image: gcc:10.2
 pipelines:
   default:
     - step:
-        name: prepare
+        name: build and test
         script:
           - apt update -y
           - apt install cmake -y
-    - step:
-        name: build
-        script:
           - make test
-    - step:
-        name: Run coverage
-        script:
-          - mmake coverage
+          - make coverage
