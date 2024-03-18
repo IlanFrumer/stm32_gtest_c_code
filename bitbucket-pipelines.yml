@@ -1,7 +1,12 @@
-image: gcc:13.2
+image: gcc:10.2
 
 pipelines:
   default:
+    - step:
+        name: prepare
+        script:
+          - apt update -y
+          - apt install cmake -y
     - step:
         name: build
         script:
