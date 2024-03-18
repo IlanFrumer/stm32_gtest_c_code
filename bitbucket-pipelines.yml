@@ -2,12 +2,12 @@ image: gcc:10.2
 
 pipelines:
   default:
-    - step:
-      name: build
-      script:
-        - make test
-
-    - step:
-      name: Run coverage
-      script:
-        - make coverage
+    - parallel:
+        - step:
+            name: build
+            script:
+              - make test
+        - step:
+            name: Run coverage
+            script:
+              - mmake coverage
